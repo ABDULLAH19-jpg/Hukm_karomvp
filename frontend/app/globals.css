@@ -1,0 +1,784 @@
+/* Design system for the Hukm Karo demo.
+   Direction: premium, warm, operational (design-system.md). A restaurant
+   front-of-house runs this, so it stays calm in bright kitchens, never neon. */
+
+:root {
+  --bg: #f5efe4;
+  --surface: #fcf8f0;
+  --surface-2: #efe7d7;
+  --ink: #221c14;
+  --ink-2: #5d5340;
+  --line: #e0d6c1;
+  --accent: #a63a1e;
+  --accent-soft: #edc9b4;
+  --green: #1f6b43;
+  --green-soft: #d9e8d6;
+  --amber: #9c6b18;
+  --amber-soft: #f4e3be;
+  --red: #a8230f;
+  --red-soft: #f3d8cf;
+  --focus: #6b3418;
+  --radius: 14px;
+  --shadow: 0 1px 0 rgba(34, 28, 20, 0.05);
+  --serif: Georgia, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- top bar ----------------------------------------------------------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+}
+
+.brand {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand small {
+  display: block;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navlink {
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.navlink:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.navlink[aria-current="page"] {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+/* ---- typography helpers ------------------------------------------------- */
+
+.display {
+  font-family: var(--serif);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.muted {
+  color: var(--ink-2);
+}
+
+.small {
+  font-size: 13px;
+}
+
+/* ---- buttons ------------------------------------------------------------ */
+
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, transform 0.05s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff8f0;
+}
+
+.btn-primary:hover {
+  background: #8f3118;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--ink-2);
+}
+
+/* Destructive kitchen actions: rejecting, cancelling, marking an order failed. */
+.btn-danger {
+  background: transparent;
+  border-color: var(--red-soft);
+  color: var(--red);
+}
+
+.btn-danger:hover {
+  background: var(--red-soft);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.icon-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 14px;
+}
+
+.icon-btn:hover {
+  background: var(--surface-2);
+}
+
+/* ---- chips -------------------------------------------------------------- */
+
+.chip {
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.chip::before {
+  border-radius: 50%;
+  content: "";
+  height: 7px;
+  width: 7px;
+  background: currentColor;
+}
+
+.chip-green {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.chip-amber {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.chip-red {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.chip-ink {
+  background: var(--surface-2);
+  color: var(--ink-2);
+}
+
+/* ---- page intro --------------------------------------------------------- */
+
+.pagehead {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  margin: 12px 0 28px;
+}
+
+.pagehead h1 {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* ---- empty / error / loading states ------------------------------------- */
+
+.empty {
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  color: var(--ink-2);
+  margin: 24px 0;
+  padding: 44px 24px;
+  text-align: center;
+}
+
+.empty h2 {
+  font-family: var(--serif);
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.empty p {
+  margin: 0 0 18px;
+}
+
+.banner {
+  border-radius: var(--radius);
+  font-size: 14px;
+  padding: 12px 16px;
+}
+
+.banner-error {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.banner-info {
+  background: var(--surface-2);
+  color: var(--ink-2);
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* ---- voice demo page ---------------------------------------------------- */
+
+.voice-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) 360px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.talk-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;
+  padding: 32px;
+}
+
+.mic-column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 12px 0 28px;
+  text-align: center;
+}
+
+.mic {
+  align-items: center;
+  appearance: none;
+  background: var(--ink);
+  border: none;
+  border-radius: 50%;
+  color: var(--surface);
+  cursor: pointer;
+  display: flex;
+  height: 108px;
+  justify-content: center;
+  position: relative;
+  width: 108px;
+}
+
+.mic svg {
+  height: 40px;
+  width: 40px;
+}
+
+.mic:hover {
+  transform: scale(1.03);
+}
+
+.mic:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.mic.is-listening {
+  background: var(--accent);
+}
+
+.mic.is-listening::after,
+.mic.is-speaking::after {
+  animation: pulse 1.6s ease-out infinite;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  content: "";
+  inset: -8px;
+  position: absolute;
+}
+
+.mic.is-speaking {
+  background: var(--green);
+}
+
+.mic.is-speaking::after {
+  border-color: var(--green);
+}
+
+.mic.is-thinking {
+  background: var(--ink-2);
+}
+
+.mic.is-error {
+  background: var(--red);
+}
+
+.mic.is-thinking svg {
+  animation: breathe 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.mic-status {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 16px;
+}
+
+.mic-hint {
+  color: var(--ink-2);
+  font-size: 13px;
+  margin-top: 4px;
+  max-width: 300px;
+}
+
+.transcript {
+  border-top: 1px solid var(--line);
+  flex: 1;
+  margin: 0 0 8px;
+  overflow-y: auto;
+  padding-top: 20px;
+}
+
+.turn {
+  margin-bottom: 18px;
+}
+
+.turn-label {
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.turn-user .turn-label {
+  color: var(--accent);
+}
+
+.turn p {
+  margin: 0;
+}
+
+.interim {
+  color: var(--ink-2);
+  font-style: italic;
+  margin-top: 12px;
+}
+
+.empty-transcript {
+  color: var(--ink-2);
+}
+
+/* typed fallback when speech recognition is unavailable */
+.typed {
+  display: flex;
+  gap: 10px;
+}
+
+.typed-input {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  flex: 1;
+  font-family: inherit;
+  font-size: 15px;
+  padding: 10px 18px;
+}
+
+.typed-input:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.footer-note {
+  color: var(--ink-2);
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+/* ---- order summary (voice page) ----------------------------------------- */
+
+.order-panel {
+  align-self: start;
+  padding: 24px;
+  position: sticky;
+  top: 24px;
+}
+
+.order-panel h2 {
+  font-family: var(--serif);
+  font-size: 16px;
+  margin: 0 0 14px;
+}
+
+.order-id {
+  background: var(--surface-2);
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  padding: 10px 12px;
+}
+
+.order-id strong {
+  display: block;
+}
+
+.cart-line {
+  align-items: baseline;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cart-line .name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cart-line .qty {
+  color: var(--ink-2);
+  font-size: 13px;
+}
+
+.cart-line .price {
+  font-variant-numeric: tabular-nums;
+}
+
+.totals {
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.totals .row {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.totals .grand {
+  border-top: 1px solid var(--line);
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+  padding-top: 10px;
+}
+
+.order-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ---- KDS page ----------------------------------------------------------- */
+
+.kds-cols {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.kds-col {
+  background: var(--surface-2);
+  border-radius: var(--radius);
+  flex: 0 0 280px;
+  min-height: 120px;
+  padding: 12px;
+}
+
+.kds-col-head {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.kds-col-head h2 {
+  font-family: var(--serif);
+  font-size: 14px;
+  margin: 0;
+}
+
+.kds-col-head .badge {
+  background: var(--surface);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 22px;
+  padding: 2px 8px;
+  text-align: center;
+}
+
+.kcard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  padding: 14px;
+}
+
+.kcard-head {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.kcard-num {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.kcard-time {
+  color: var(--ink-2);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.kcard-lines {
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.kcard-lines li {
+  margin-bottom: 3px;
+}
+
+/* The choices the customer made. A kitchen that cannot read these cannot make the order. */
+.kcard-options {
+  color: var(--ink-2);
+  font-size: 12px;
+  list-style: none;
+  margin: 2px 0 6px;
+  padding: 0;
+}
+
+/* Why an order is with a person rather than on the line. */
+.kcard-note {
+  background: var(--amber-soft);
+  border-radius: 8px;
+  color: var(--amber);
+  font-size: 12px;
+  margin-top: 10px;
+  padding: 7px 9px;
+}
+
+.kcard-total {
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.kcard-meta {
+  color: var(--ink-2);
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.kcard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.kcard-actions .btn {
+  flex: 1 1 auto;
+}
+
+.attention-strip {
+  background: var(--amber-soft);
+  border: 1px solid #e4cf96;
+  border-radius: var(--radius);
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+}
+
+.attention-strip h2 {
+  font-family: var(--serif);
+  font-size: 15px;
+  margin: 0 0 8px;
+}
+
+.attention-strip ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.attention-strip li {
+  margin-bottom: 4px;
+}
+
+/* ---- footer ------------------------------------------------------------- */
+
+.pagefoot {
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 12px;
+  margin-top: 48px;
+  padding: 18px 0 32px;
+}
+
+/* ---- responsive --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .voice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-panel {
+    position: static;
+  }
+
+  .talk-panel {
+    min-height: 0;
+  }
+
+  .kds-cols {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .kds-col {
+    flex: none;
+    width: 100%;
+  }
+
+  .pagehead h1 {
+    font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

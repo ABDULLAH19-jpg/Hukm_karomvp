@@ -1,0 +1,46 @@
+# Secrets. .env.hukm holds live Groq, Gemini, Vapi, and Geoapify keys.
+# It must never be committed. .env.example and the .example templates are safe
+# because every value in them is blank or a placeholder.
+.env
+.env.*
+!.env.example
+!*.example
+.aws/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node and Next.js
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+npm-debug.log*
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Customer data. Call transcripts and recording URLs live here. `private/` is the folder the
+# recorded call dump is moved into: the whole folder is ignored, not just the one file name,
+# so a second dump cannot slip into the repository by being called something else.
+private/
+_vapi_call_dump.json
+recordings/
+transcripts/
+
+# Local agent and editor state
+.claude/
+.codex/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
